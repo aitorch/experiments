@@ -1,0 +1,42 @@
+name: Selenium Tests
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs daily at midnight (UTC)
+  push:
+    branches:
+      - main  # Optional: Run tests on push to main branch
+  pull_request:
+    branches:
+      - main  # Optional: Run tests on pull requests to main branch
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r automations/cita_registro/requirements.txtt  # Add Selenium and other dependencies here
+
+      - name: Install Firefox
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y firefox
+      
+      - name: Navigate to test directory
+        run: cd automations/cita_registro/  # Navigate to the subdirectory
+
+      - name: Run Selenium tests
+        env:
+          ID_CITADO: ${{ secrets.ID_CITADO }}  # Pass secret as environment variable
+          DES_CITADO: ${{ secrets.DES_CITADO }}  # Pass secret as environment variable
+        run: python -m pytest  cita_registro.py# Run the test
