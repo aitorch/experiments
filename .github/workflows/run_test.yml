@@ -39,4 +39,4 @@ jobs:
         env:
           ID_CITADO: ${{ secrets.ID_CITADO }}  # Pass secret as environment variable
           DES_CITADO: ${{ secrets.DES_CITADO }}  # Pass secret as environment variable
-        run: python -m pytest  cita_registro.py # Run the test
+        run: python -m pytest automations/cita_registro/cita_registro.py # Run the test
