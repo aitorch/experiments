@@ -22,7 +22,7 @@ class TestBuscarcita:
         id_citado = os.getenv("ID_CITADO")  # Fetch from GitHub Secrets
         des_citado = os.getenv("DES_CITADO")  # Fetch from GitHub Secrets
 
-        self.driver.get("https://sede.administracionespublicas.gob.es/icpplustiej/selectSede")
+        self.driver.get("https://sede.administracionespublicas.gob.es/icpplustiej/citar?org=JUS-RC&locale=es")
         self.driver.set_window_size(550, 691)
         self.driver.find_element(By.ID, "provincia").click()
         dropdown = self.driver.find_element(By.ID, "provincia")
