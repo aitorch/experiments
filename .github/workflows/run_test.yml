@@ -38,10 +38,3 @@ jobs:
           ID_CITADO: ${{ secrets.ID_CITADO }}  # Pass secret as environment variable
           DES_CITADO: ${{ secrets.DES_CITADO }}  # Pass secret as environment variable
         run: python -m pytest cita_registro.py  # Run the test script
-
-      - name: Notify on failure
-        if: failure()  # Only run this step if the previous step fails
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_MESSAGE: "Selenium tests failed! Check the logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
