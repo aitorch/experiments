@@ -29,6 +29,11 @@ jobs:
       - name: Install Chrome and Chromedriver
         uses: browser-actions/setup-chrome@v1
 
+      - name: Verify ChromeDriver installation
+        run: |
+          which chromedriver
+          chromedriver --version
+
   # Navigate to the subdirectory
 
       - name: Run Selenium tests
