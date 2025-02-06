@@ -23,6 +23,7 @@ class TestBuscarcita:
         des_citado = os.getenv("DES_CITADO")  # Fetch from GitHub Secrets
 
         self.driver.get("https://sede.administracionespublicas.gob.es/icpplustiej/citar?org=JUS-RC&locale=es")
+        
         self.driver.set_window_size(550, 691)
         self.driver.find_element(By.ID, "provincia").click()
         dropdown = self.driver.find_element(By.ID, "provincia")
@@ -34,7 +35,9 @@ class TestBuscarcita:
         dropdown = self.driver.find_element(By.ID, "tramiteGrupo[4]")
         dropdown.find_element(By.XPATH, "//option[. = 'EXPEDIENTE DE MATRIMONIO CIVIL Y CAPACIDAD MATRIMONIAL']").click()
         self.driver.find_element(By.CSS_SELECTOR, "#tramiteGrupo\\[4\\] > option:nth-child(2)").click()
-        self.driver.find_element(By.ID, "btnAceptar").click()
+        btn_aceptar = self.driver.find_element(By.ID, "btnAceptar")
+        self.driver.execute_script("arguments[0].scrollIntoView(true);", btn_aceptar)
+        btn_aceptar.click()
         self.driver.find_element(By.CSS_SELECTOR, "#btnEntrar span").click()
         self.driver.find_element(By.ID, "txtIdCitado").click()
         self.driver.find_element(By.ID, "txtIdCitado").send_keys(id_citado)  # Use secret value
