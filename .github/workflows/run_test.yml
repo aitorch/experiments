@@ -21,6 +21,9 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.8'
+          
+      - name: Navigate to test directory
+        run: cd automations/cita_registro
 
       - name: Install dependencies
         run: |
@@ -30,8 +33,7 @@ jobs:
       - name: Install Firefox and Geckodriver
         uses: browser-actions/setup-firefox@v1  # Install Firefox and Geckodriver
 
-      - name: Navigate to test directory
-        run: cd automations/cita_registro  # Navigate to the subdirectory
+  # Navigate to the subdirectory
 
       - name: Run Selenium tests
         env:
