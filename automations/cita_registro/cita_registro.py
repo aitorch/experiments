@@ -11,14 +11,7 @@ class TestBuscarcita:
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
         
-        # Explicitly specify Chromedriver path
-        service = Service(executable_path="/usr/local/bin/chromedriver")
-        
-        self.driver = webdriver.Chrome(
-            options=options,
-            service=service
-        )
-
+        self.driver = webdriver.Chrome(options=options)
 
     def teardown_method(self, method):
         self.driver.quit()
