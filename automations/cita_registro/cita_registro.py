@@ -1,16 +1,24 @@
 import pytest
 import os
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.firefox.options import Options  # Import Firefox options
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 
 class TestBuscarcita:
     def setup_method(self, method):
-        # Set up Firefox in headless mode
         options = Options()
-        options.headless = True  # Run in headless mode
-        self.driver = webdriver.Firefox(options=options)
-        self.vars = {}
+        options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        
+        # Explicitly specify Chromedriver path
+        service = Service(executable_path="/usr/local/bin/chromedriver")
+        
+        self.driver = webdriver.Chrome(
+            options=options,
+            service=service
+        )
+
 
     def teardown_method(self, method):
         self.driver.quit()

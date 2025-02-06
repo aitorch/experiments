@@ -26,8 +26,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r automations/cita_registro/requirements.txt  # Add Selenium and other dependencies here
 
-      - name: Install Firefox and Geckodriver
-        uses: browser-actions/setup-firefox@v1  # Install Firefox and Geckodriver
+      - name: Install Chrome and Chromedriver
+        uses: browser-actions/setup-chrome@v1
 
   # Navigate to the subdirectory
 
