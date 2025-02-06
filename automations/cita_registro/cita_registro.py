@@ -23,8 +23,7 @@ class TestBuscarcita:
         des_citado = os.getenv("DES_CITADO")  # Fetch from GitHub Secrets
 
         self.driver.get("https://sede.administracionespublicas.gob.es/icpplustiej/citar?org=JUS-RC&locale=es")
-        
-        self.driver.set_window_size(550, 691)
+        self.driver.find_element(By.ID,"cookie_action_close_header").click()
         self.driver.find_element(By.ID, "provincia").click()
         dropdown = self.driver.find_element(By.ID, "provincia")
         dropdown.find_element(By.XPATH, "//option[. = 'Las Palmas']").click()
