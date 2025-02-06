@@ -44,4 +44,4 @@ class TestBuscarcita:
         self.driver.find_element(By.ID, "txtDesCitado").send_keys(des_citado)  # Use secret value
         self.driver.find_element(By.ID, "btnEnviar").click()
         self.driver.find_element(By.ID, "btnEnviar").click()
-        assert self.driver.find_element(By.CSS_SELECTOR, ".mf-msg__info").text == "En este momento no hay citas disponibles.\\\\n\\\\nEn breve, la Oficina pondrá a su disposición nuevas citas."
+        assert self.driver.find_element(By.CSS_SELECTOR, ".mf-msg__info").text == "Información: En este momento no hay citas disponibles"
