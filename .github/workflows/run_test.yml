@@ -1,44 +1,44 @@
-name: Selenium Tests
+# name: Selenium Tests
 
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: '*/15 * * * *'  
-  push:
-    branches:
-      - main  # Optional: Run tests on push to main branch
-  pull_request:
-    branches:
-      - main  # Optional: Run tests on pull requests to main branch
+# on:
+#   workflow_dispatch:
+#   schedule:
+#     - cron: '*/15 * * * *'  
+#   push:
+#     branches:
+#       - main  # Optional: Run tests on push to main branch
+#   pull_request:
+#     branches:
+#       - main  # Optional: Run tests on pull requests to main branch
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+# jobs:
+#   test:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.8'
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r automations/cita_registro/requirements.txt  # Add Selenium and other dependencies here
+#       - name: Set up Python
+#         uses: actions/setup-python@v4
+#         with:
+#           python-version: '3.8'
+#       - name: Install dependencies
+#         run: |
+#           python -m pip install --upgrade pip
+#           pip install -r automations/cita_registro/requirements.txt  # Add Selenium and other dependencies here
 
-      - name: Install Chrome and Chromedriver
-        uses: browser-actions/setup-chrome@v1
+#       - name: Install Chrome and Chromedriver
+#         uses: browser-actions/setup-chrome@v1
 
-      - name: Verify ChromeDriver installation
-        run: |
-          which chromedriver
-          chromedriver --version
+#       - name: Verify ChromeDriver installation
+#         run: |
+#           which chromedriver
+#           chromedriver --version
 
-  # Navigate to the subdirectory
+#   # Navigate to the subdirectory
 
-      - name: Run Selenium tests
-        env:
-          ID_CITADO: ${{ secrets.ID_CITADO }}  # Pass secret as environment variable
-          DES_CITADO: ${{ secrets.DES_CITADO }}  # Pass secret as environment variable
-        run: python -m pytest automations/cita_registro/cita_registro.py  # Run the test script
+#       - name: Run Selenium tests
+#         env:
+#           ID_CITADO: ${{ secrets.ID_CITADO }}  # Pass secret as environment variable
+#           DES_CITADO: ${{ secrets.DES_CITADO }}  # Pass secret as environment variable
+#         run: python -m pytest automations/cita_registro/cita_registro.py  # Run the test script
